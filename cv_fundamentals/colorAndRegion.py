@@ -9,7 +9,7 @@ image = mpimg.imread('test.jpg')
 # Grab the x and y size and make a copy of the image 
 ysize = image.shape[0]
 xsize = image.shape[1]
-print xsize, ysize
+print (xsize, ysize)
 # Note: always make a copy rather than simply using "="
 color_select = np.copy(image)
 line_image = np.copy(image)
@@ -26,7 +26,7 @@ rgb_threshold = [red_threshold, green_threshold, blue_threshold]
 # Define a triangular region of interest
 left_bottom = [0, 390]
 right_bottom = [600, 390]
-apex = [300, 150]
+apex = [280, 180]
 
 # connect these points using a straight line formula
 
@@ -58,7 +58,13 @@ line_image[~color_thresholds & region_thresholds] = [255,0,0]
 
 #Display the image
 plt.imshow(color_select)
+#plt.show()
 plt.imshow(line_image)
-plt.show()
+#plt.savefig("region-mask-lanes.jpg")
+#plt.show()
+plt.imshow(region_thresholds)
+#plt.show()
 
-#mpimg.imsave("region-mask-lanes.jpg", region_select)
+#inside anaconda env the imsave option doesn't save the 
+#image as jpg but as png. So save it as png 
+mpimg.imsave("region-mask-lanes.png", line_image)
